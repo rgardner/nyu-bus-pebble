@@ -5,7 +5,9 @@
  */
 
 var UI = require('ui');
+var Routes = require('routes');
 var Vector2 = require('vector2');
+Routes.hello();
 
 var main = new UI.Card({
   title: 'Pebble.js',
