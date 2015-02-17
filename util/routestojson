@@ -5,5 +5,6 @@ pdfdir=../assets/route_pdfs
 datadir=../data
 
 for f in "$pdfdir"/*; do
-  ./pdftojson "$f" >"$datadir/${f%.*}".json
+  name="$(basename "$f")"
+  ./pdftojson "$f" >"$datadir/${name%.*}".json
 done
