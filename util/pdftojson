@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# usage: pdftojson <file.pdf>
+
+./pdftohtml "$1" | ./htmltojson | python -m json.tool >"${1%.*}".json

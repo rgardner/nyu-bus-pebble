@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# usage: pdftohtml <file.pdf>
+
+API_KEY="$PDFTABLES_API_KEY"
+curl -F f=@"$1" "https://pdftables.com/api?key=$API_KEY"

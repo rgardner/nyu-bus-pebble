@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+# usage: htmltojson < file.html
+# Converts an html table into a corresponding json file.
+#
+# The names of the columns will be "stop1", "stop2", etc, so manual column
+#   renaming is left to the user. The structure of the resulting json is:
+#   { "stop1": ["8:30 AM", "9:30 AM", "1:00 PM"], "stop2": [...] }
+
+require 'json'
+require 'nokogiri'
+
+# Cannot get the number of columns in the table. So instead, we use a very
+#   large number > the number of possible columns.
+MAX_COLS = 50
+TIME_REGEX = /\d{1,2}:\d{2} [ap]m/i  # 1:30 AM, 10:30 PM, etc.
+
+html_doc = Nokogiri::HTML(ARGF.read)
+
+stops = {}  # bus_stops: times, str: arr
+MAX_COLS.times { |i| stops["stop#{i}"] = [] }  # create empty arrays for each stop.
+
+rows = html_doc.xpath('//table/tr')
+rows.each do |row|
+  MAX_COLS.times do |i|
+    td = row.at_xpath("td[#{i}]/text()").to_s.strip
+    stops["stop#{i}"].push(td) if TIME_REGEX.match(td)
+  end
+end
+
+result = stops.reject { |c| stops[c].empty? }
+puts result.to_json
