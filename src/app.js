@@ -4,16 +4,20 @@
  * This is where you write your app.
  */
 
+var Bus = require('bus');
 var UI = require('ui');
 var Routes = require('routes');
 var Vector2 = require('vector2');
-Routes.hello();
+
+// The number of bus times to display.
+var NUM_BUS_TIMES = 3;
+
+//
+var current_bus = 'b';
 
 var main = new UI.Card({
-  title: 'Pebble.js',
-  icon: 'images/menu_icon.png',
-  subtitle: 'Hello World!',
-  body: 'Press any button.'
+  title: 'NYU Bus B',
+  body: 'Determinging your nearest bus stop...'
 });
 
 main.show();
@@ -39,16 +43,10 @@ main.on('click', 'up', function(e) {
 });
 
 main.on('click', 'select', function(e) {
-  var wind = new UI.Window();
-  var textfield = new UI.Text({
-    position: new Vector2(0, 50),
-    size: new Vector2(144, 30),
-    font: 'gothic-24-bold',
-    text: 'Text Anywhere!',
-    textAlign: 'center'
-  });
-  wind.add(textfield);
-  wind.show();
+  var card = new UI.Card();
+  card.title = 'NYU Bus B';
+  card.body =  'Determining your nearest bus stop...';
+  Bus.nextNTimes(currentBus, NUM_BUS_TIMES);
 });
 
 main.on('click', 'down', function(e) {
