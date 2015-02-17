@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # usage: routestojson.sh
 # Converts all pdfs in /assets/route_pdfs to their corresponding json files.
-pdfdir=../assets/route_pdfs
+pdfdir=../routes
 datadir=../data
 
 for f in "$pdfdir"/*; do
