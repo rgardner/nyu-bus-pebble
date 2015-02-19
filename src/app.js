@@ -27,7 +27,6 @@ main.on('click', 'up', function(e) {
     sections: [{
       items: [{
         title: 'Pebble.js',
-        icon: 'images/menu_icon.png',
         subtitle: 'Can do Menus'
       }, {
         title: 'Second Item',
