@@ -6,7 +6,7 @@
     ],
     "companyName": "boppers327@gmail.com",
     "longName": "nyu-bus",
-    "projectType": "simplyjs",
+    "projectType": "pebblejs",
     "resources": {
         "media": [
             {
@@ -18,6 +18,11 @@
             {
                 "file": "images/logo_splash.png",
                 "name": "IMAGE_LOGO_SPLASH",
+                "type": "png"
+            },
+            {
+                "file": "images/tile_splash.png",
+                "name": "IMAGE_TILE_SPLASH",
                 "type": "png"
             },
             {
