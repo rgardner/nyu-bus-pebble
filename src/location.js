@@ -10,7 +10,7 @@ var locationOptions = {
 
 // Convert degrees to radians.
 function toRadians(deg) {
-  return num * Math.PI / 180;
+  return deg * Math.PI / 180;
 }
 
 // Calculate the "as-the-crow-flies" distance between two gps coordinates.
@@ -50,5 +50,6 @@ function getCurrentPosition() {
 
 /* Public functions. */
 Location.getCurrentPosition = getCurrentPosition;
+Location.distance = distance;
 
 module.exports = Location;

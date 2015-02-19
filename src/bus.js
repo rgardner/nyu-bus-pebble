@@ -1,5 +1,7 @@
 var Bus = {};
+var UI = require('ui');
 var Location = require('location');
+var Routes = require('routes');
 
 // Get the next `n` bus times for a given bus `route`.
 // Returns 0 on success, -1 on error.
@@ -9,7 +11,7 @@ function getNextBus(route, n) {
   var pos = Location.getCurrentPosition();
   var stop = nearestBusStop(pos);
   card.subtitle(stop);
-  console.log('nearestBusStop= ' + busStop);
+  console.log('nearestBusStop= ' + stop);
 
   var times = nextBus(route, stop, n);
   if (times.length === 0) {
@@ -63,7 +65,7 @@ function nearestBusStop(route, pos) {
   var stations = Routes.stations(route);
   for (var key in stations) {
     if (stations.hasOwnProperty(key)) {
-      var d = distance(pos.coords, stations[key]);
+      var d = Location.distance(pos.coords, stations[key]);
       console.log(key, ': ', d);
       if (d < minDist) {
         minDist = d;
@@ -79,5 +81,6 @@ function nearestBusStop(route, pos) {
 Bus.getNextBus = getNextBus;
 Bus.nextBus = nextBus;
 Bus.nearestBusStop = nearestBusStop;
+Bus.test = function() { console.log("hello"); };
 
 module.exports = Bus;
